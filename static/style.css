@@ -113,7 +113,7 @@ a { color: var(--accent); }
 .sources summary { cursor: pointer; color: var(--muted); }
 .source {
   margin: 6px 0 0; padding: 8px 10px; border-left: 3px solid var(--accent);
-  background: var(--panel); border-radius: 6px; white-space: pre-wrap;
+  background: var(--panel); border-radius: 6px;
 }
 .source.flash { outline: 2px solid var(--accent); }
 .source b { display: block; color: var(--accent); margin-bottom: 2px; }
