@@ -93,6 +93,23 @@ a { color: var(--accent); }
 .how summary { cursor: pointer; color: var(--text); font-weight: 600; }
 .how ol { padding-left: 20px; }
 
+.dev { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+.dev-head { display: flex; align-items: center; gap: 12px; }
+.avatar {
+  width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+  display: grid; place-items: center; font-weight: 700;
+  background: var(--accent); color: #fff;
+}
+.dev-name { margin: 0; font-weight: 700; }
+.dev-role { margin: 0; font-size: 13px; color: var(--muted); }
+.dev-pitch { margin: 10px 0 12px; font-size: 14px; color: var(--muted); }
+.dev-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn {
+  display: inline-block; padding: 8px 14px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  text-decoration: none; border: 1px solid var(--line); color: var(--text); background: var(--panel);
+}
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+
 .chat-panel { display: flex; flex-direction: column; min-height: 70vh; }
 .messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; padding: 4px 2px 12px; max-height: 62vh; }
 .empty { margin: auto; color: var(--muted); }
