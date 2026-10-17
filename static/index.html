@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chat with your PDF</title>
+  <meta name="description" content="Upload a PDF and ask it questions. Answers come only from your document, with page numbers.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="logo">📄</span>
+      <div>
+        <h1>Chat with your PDF</h1>
+        <p>Ask questions and get answers from your document, with page numbers.</p>
+      </div>
+    </div>
+    <a class="gh" href="https://github.com/imumaimabukhari-123/chat-with-pdf" target="_blank" rel="noopener">View code</a>
+  </header>
+
+  <main class="layout">
+    <!-- Left: the document -->
+    <section class="panel doc-panel">
+      <h2>1. Your document</h2>
+
+      <label id="drop" class="drop">
+        <input id="file" type="file" accept="application/pdf" hidden>
+        <span class="drop-icon">⬆️</span>
+        <strong>Drop a PDF here or click to choose</strong>
+        <small>Text PDFs up to 20 MB. Scanned images can't be read.</small>
+      </label>
+      <button id="sample" class="link-btn" type="button">No PDF handy? Try a sample handbook</button>
+
+      <div id="progress" class="progress" hidden>
+        <div class="bar"><div id="bar-fill"></div></div>
+        <p id="progress-text"></p>
+      </div>
+
+      <div id="doc-info" class="doc-info" hidden>
+        <p class="doc-name" id="doc-name"></p>
+        <p class="doc-meta" id="doc-meta"></p>
+        <p class="notice" id="doc-notice" hidden></p>
+        <button id="reset" class="link-btn" type="button">Use a different PDF</button>
+      </div>
+
+      <details class="how">
+        <summary>How does it work?</summary>
+        <ol>
+          <li>Your browser reads the PDF and splits it into small passages, remembering each passage's page.</li>
+          <li>Each passage becomes an <em>embedding</em>, a list of numbers that captures its meaning (Google Gemini).</li>
+          <li>For your question, a hybrid search (meaning + keywords) finds the most relevant passages.</li>
+          <li>The AI answers using only those passages and cites the pages, so you can check every answer.</li>
+        </ol>
+        <p>Your PDF is not saved anywhere. Close the tab and it's gone.</p>
+      </details>
+    </section>
+
+    <!-- Right: the chat -->
+    <section class="panel chat-panel">
+      <h2>2. Ask questions</h2>
+      <div id="messages" class="messages">
+        <div class="empty" id="empty">Upload a PDF to start chatting.</div>
+      </div>
+      <div id="suggestions" class="suggestions" hidden></div>
+      <form id="ask-form" class="ask">
+        <input id="question" type="text" placeholder="Upload a PDF first" maxlength="1000" autocomplete="off" disabled>
+        <button id="send" type="submit" disabled>Ask</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="foot">
+    Built by Umaima Shah ·
+    <a href="https://www.fiverr.com/umaima886" target="_blank" rel="noopener">Hire me on Fiverr</a> ·
+    <a href="https://github.com/imumaimabukhari-123" target="_blank" rel="noopener">GitHub</a>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
