@@ -334,10 +334,13 @@ const drop = $("drop");
 ["dragleave", "drop"].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.remove("over"); }));
 drop.addEventListener("drop", (e) => handleFile(e.dataTransfer.files[0]));
 
-$("sample").addEventListener("click", async () => {
+async function loadSample() {
   const resp = await fetch("/static/sample-handbook.pdf");
   loadPdf("Sample: Brightside Coffee employee handbook.pdf", new Uint8Array(await resp.arrayBuffer()));
-});
+}
+$("sample").addEventListener("click", loadSample);
+// The home page's "Try with a sample PDF" button opens /chat?sample=1
+if (new URLSearchParams(location.search).has("sample")) loadSample();
 
 $("reset").addEventListener("click", () => {
   state.chunks = []; state.vectors = null; state.keyword = null;

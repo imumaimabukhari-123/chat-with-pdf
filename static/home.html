@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chat with your PDF</title>
+  <meta name="description" content="Upload a PDF and ask it questions. An AI chatbot that answers only from your document, with page numbers for every fact.">
+  <meta name="author" content="Umaima Shah">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    @media (max-width: 600px) { .wrap { padding: 0 16px; } }
+
+    /* hero */
+    .hero { padding: 64px 0 40px; text-align: center; }
+    .pill {
+      display: inline-block; background: var(--accent-soft); color: var(--accent);
+      font-size: 13px; font-weight: 600; padding: 5px 12px; border-radius: 20px; margin-bottom: 18px;
+    }
+    .hero h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.15; margin: 0 0 16px; letter-spacing: -0.02em; }
+    .hero h1 span { color: var(--accent); }
+    .hero p { font-size: 18px; color: var(--muted); max-width: 640px; margin: 0 auto 28px; }
+    .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .cta .btn { padding: 12px 22px; font-size: 15px; border-radius: 10px; }
+    .shot {
+      display: block; width: 100%; max-width: 900px; margin: 44px auto 0; height: auto;
+      border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 20px 50px rgba(0, 0, 0, .25);
+    }
+
+    /* highlights */
+    .highlights { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 8px 0 64px; }
+    @media (max-width: 760px) { .highlights { grid-template-columns: repeat(2, 1fr); } }
+    .highlight { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; text-align: center; }
+    .highlight b { display: block; font-size: 24px; line-height: 1.2; color: var(--accent); }
+    .highlight span { color: var(--muted); font-size: 13px; }
+
+    section { margin-bottom: 64px; scroll-margin-top: 70px; }
+    h2 { font-size: 26px; margin: 0 0 6px; letter-spacing: -0.01em; }
+    .sub { color: var(--muted); margin: 0 0 24px; }
+
+    /* cards used by steps, features and use cases */
+    .grid { display: grid; gap: 14px; }
+    .grid.four { grid-template-columns: repeat(4, 1fr); }
+    .grid.three { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 900px) { .grid.four, .grid.three { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .grid.four, .grid.three { grid-template-columns: 1fr; } }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+    .card h3 { margin: 0 0 4px; font-size: 16px; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .num {
+      width: 30px; height: 30px; border-radius: 50%; background: var(--accent-soft); color: var(--accent);
+      display: grid; place-items: center; font-weight: 700; margin-bottom: 10px;
+    }
+    .icon { font-size: 24px; margin-bottom: 8px; }
+
+    /* tech */
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 8px 16px; font-size: 14px; }
+    .chip b { color: var(--accent); }
+
+    /* developer */
+    .dev-card {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 28px;
+      display: flex; gap: 22px; align-items: center; flex-wrap: wrap;
+    }
+    .dev-card .avatar { width: 76px; height: 76px; font-size: 28px; }
+    .dev-card h3 { margin: 0; font-size: 22px; }
+    .dev-card .role { color: var(--muted); margin: 2px 0 10px; }
+    .dev-card .pitch { margin: 0 0 16px; max-width: 60ch; }
+    .dev-card .btn { padding: 10px 18px; }
+    .dev-text { flex: 1; min-width: 220px; }
+
+    .site-foot { border-top: 1px solid var(--line); padding: 24px 0; color: var(--muted); font-size: 13px; text-align: center; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="/"><span class="brand-mark">📄</span><span>Chat with your PDF</span></a>
+      <div class="nav-links">
+        <a href="/" class="active">Home</a>
+        <a href="/chat">Try it</a>
+        <a href="/#developer">Developer</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="hero">
+      <div class="pill">Live demo · free to try</div>
+      <h1>Ask your PDF anything.<br><span>Get answers with page numbers.</span></h1>
+      <p>Upload a manual, policy, contract or course book and ask questions in plain English.
+         The AI answers only from your document and shows the page for every fact, so you can check it.</p>
+      <div class="cta">
+        <a class="btn primary" href="/chat">Upload a PDF</a>
+        <a class="btn" href="/chat?sample=1">Try with a sample PDF</a>
+        <a class="btn" href="https://github.com/imumaimabukhari-123/chat-with-pdf" target="_blank" rel="noopener">View the code</a>
+      </div>
+      <img class="shot" src="/static/preview.png" width="1024" height="768"
+           alt="The chatbot answering a question about holiday days, with page 3 cited after each fact">
+    </header>
+
+    <div class="highlights">
+      <div class="highlight"><b>p. 3</b><span>A page number on every fact</span></div>
+      <div class="highlight"><b>0 files</b><span>Stored on the server</span></div>
+      <div class="highlight"><b>Hybrid</b><span>Meaning + keyword search</span></div>
+      <div class="highlight"><b>Free</b><span>Runs on Google Gemini's free tier</span></div>
+    </div>
+
+    <section id="how">
+      <h2>How it works</h2>
+      <p class="sub">This is a RAG system: Retrieval-Augmented Generation. The AI looks things up before it answers.</p>
+      <div class="grid four">
+        <div class="card"><div class="num">1</div><h3>Read</h3><p>Your browser reads the PDF and splits it into short passages, remembering each passage's page.</p></div>
+        <div class="card"><div class="num">2</div><h3>Understand</h3><p>Each passage becomes an embedding: a list of numbers that captures its meaning.</p></div>
+        <div class="card"><div class="num">3</div><h3>Search</h3><p>For your question, a hybrid search finds the best passages by meaning and by keywords.</p></div>
+        <div class="card"><div class="num">4</div><h3>Answer</h3><p>The AI answers using only those passages, and cites the page each fact came from.</p></div>
+      </div>
+    </section>
+
+    <section id="features">
+      <h2>Features</h2>
+      <p class="sub">Built to give answers you can trust.</p>
+      <div class="grid three">
+        <div class="card"><div class="icon">📌</div><h3>Page citations</h3><p>Every fact has a page chip. Click it to see the exact passage the answer used.</p></div>
+        <div class="card"><div class="icon">🙅</div><h3>No guessing</h3><p>If the document doesn't say it, the chatbot says "I couldn't find that" instead of making something up.</p></div>
+        <div class="card"><div class="icon">🔎</div><h3>Hybrid search</h3><p>Combines meaning-based search with BM25 keyword search, merged with Reciprocal Rank Fusion.</p></div>
+        <div class="card"><div class="icon">💬</div><h3>Follow-up questions</h3><p>Remembers the conversation, so you can ask "and what about part-time staff?"</p></div>
+        <div class="card"><div class="icon">🔒</div><h3>Private</h3><p>The PDF is read in your browser and never saved. Close the tab and it's gone.</p></div>
+        <div class="card"><div class="icon">📱</div><h3>Works anywhere</h3><p>Drag and drop on a computer, or upload from your phone. Light and dark mode.</p></div>
+      </div>
+    </section>
+
+    <section id="uses">
+      <h2>Who it's for</h2>
+      <p class="sub">Any business with documents people keep asking questions about.</p>
+      <div class="grid three">
+        <div class="card"><h3>HR and staff handbooks</h3><p>Employees get instant answers about leave, pay and policies.</p></div>
+        <div class="card"><h3>Customer support</h3><p>Answer customers from product manuals and FAQs, with sources.</p></div>
+        <div class="card"><h3>Contracts and policies</h3><p>Find the clause you need without reading 40 pages.</p></div>
+        <div class="card"><h3>Students and training</h3><p>Ask questions about course books and training material.</p></div>
+        <div class="card"><h3>Online stores</h3><p>Answer shoppers from product catalogs and shipping policies.</p></div>
+        <div class="card"><h3>Research and reports</h3><p>Pull key numbers and findings out of long reports.</p></div>
+      </div>
+    </section>
+
+    <section id="tech">
+      <h2>Built with</h2>
+      <p class="sub">Free tools only.</p>
+      <div class="chips">
+        <span class="chip"><b>Python</b> + FastAPI</span>
+        <span class="chip"><b>Gemini</b> embeddings + chat (free tier)</span>
+        <span class="chip"><b>RAG</b> with hybrid search</span>
+        <span class="chip"><b>BM25</b> + cosine similarity + RRF</span>
+        <span class="chip"><b>pdf.js</b> in the browser</span>
+        <span class="chip"><b>Vercel</b> hosting</span>
+      </div>
+    </section>
+
+    <section id="developer">
+      <h2>Developer</h2>
+      <p class="sub">Who built this project, and how to work with me.</p>
+      <div class="dev-card">
+        <div class="avatar">US</div>
+        <div class="dev-text">
+          <h3>Umaima Shah</h3>
+          <p class="role">Software engineer · AI tools, RAG chatbots, Shopify and web apps</p>
+          <p class="pitch">I build AI chatbots that answer from your own documents, website or product data.
+             Want one like this for your business? I can set it up for you.</p>
+          <div class="dev-buttons">
+            <a class="btn primary" href="https://www.fiverr.com/umaima886" target="_blank" rel="noopener">Hire me on Fiverr</a>
+            <a class="btn" href="mailto:imumaimabukhari@gmail.com?subject=AI%20chatbot%20project">✉ Email me</a>
+            <a class="btn" href="https://github.com/imumaimabukhari-123" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="site-foot">© 2026 Umaima Shah · Chat with your PDF</footer>
+</body>
+</html>

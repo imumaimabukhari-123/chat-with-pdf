@@ -13,6 +13,10 @@ How it works:
 Run:   python app.py
 Open:  http://127.0.0.1:8002
 
+Pages:
+  /       Home: what the project is, how it works, the developer
+  /chat   The tool: upload a PDF and chat with it (/chat?sample=1 loads the sample)
+
 API:
   POST /api/embed   {texts: [...], task: "document" | "query"}  -> {vectors: [[...]]}
   POST /api/ask     {question, sources: [{page, text}], history} -> {answer}
@@ -154,7 +158,12 @@ class AskRequest(BaseModel):
 
 @app.get("/")
 def home():
-    return FileResponse(os.path.join(STATIC_DIR, "index.html"))
+    return FileResponse(os.path.join(STATIC_DIR, "home.html"))
+
+
+@app.get("/chat")
+def chat_page():
+    return FileResponse(os.path.join(STATIC_DIR, "chat.html"))
 
 
 @app.post("/api/embed")
