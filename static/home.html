@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Chat with your PDF</title>
   <meta name="description" content="Upload a PDF and ask it questions. An AI chatbot that answers only from your document, with page numbers for every fact.">
-  <meta name="author" content="Umaima Shah">
+  <meta name="author" content="Syeda Umaima">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
   <link rel="stylesheet" href="/static/style.css">
   <style>
@@ -70,6 +70,9 @@
     .dev-card .pitch { margin: 0 0 16px; max-width: 60ch; }
     .dev-card .btn { padding: 10px 18px; }
     .dev-text { flex: 1; min-width: 220px; }
+    .contact { list-style: none; padding: 0; margin: 16px 0 0; font-size: 15px; }
+    .contact li { margin: 4px 0; overflow-wrap: anywhere; }
+    .contact a { font-weight: 600; }
 
     .site-foot { border-top: 1px solid var(--line); padding: 24px 0; color: var(--muted); font-size: 13px; text-align: center; }
   </style>
@@ -80,6 +83,7 @@
       <a class="nav-brand" href="/"><span class="brand-mark">📄</span><span>Chat with your PDF</span></a>
       <div class="nav-links">
         <a href="/" class="active">Home</a>
+        <a href="/guide">Guide</a>
         <a href="/chat">Try it</a>
         <a href="/#developer">Developer</a>
       </div>
@@ -95,6 +99,7 @@
       <div class="cta">
         <a class="btn primary" href="/chat">Upload a PDF</a>
         <a class="btn" href="/chat?sample=1">Try with a sample PDF</a>
+        <a class="btn" href="/guide">Read the guide</a>
         <a class="btn" href="https://github.com/imumaimabukhari-123/chat-with-pdf" target="_blank" rel="noopener">View the code</a>
       </div>
       <img class="shot" src="/static/preview.png" width="1024" height="768"
@@ -162,9 +167,9 @@
       <h2>Developer</h2>
       <p class="sub">Who built this project, and how to work with me.</p>
       <div class="dev-card">
-        <div class="avatar">US</div>
+        <div class="avatar">SU</div>
         <div class="dev-text">
-          <h3>Umaima Shah</h3>
+          <h3>Syeda Umaima</h3>
           <p class="role">Software engineer · AI tools, RAG chatbots, Shopify and web apps</p>
           <p class="pitch">I build AI chatbots that answer from your own documents, website or product data.
              Want one like this for your business? I can set it up for you.</p>
@@ -173,11 +178,19 @@
             <a class="btn" href="mailto:imumaimabukhari@gmail.com?subject=AI%20chatbot%20project">✉ Email me</a>
             <a class="btn" href="https://github.com/imumaimabukhari-123" target="_blank" rel="noopener">GitHub</a>
           </div>
+          <ul class="contact">
+            <li>✉️ Email: <a href="mailto:imumaimabukhari@gmail.com">imumaimabukhari@gmail.com</a></li>
+            <li>💼 Fiverr: <a href="https://www.fiverr.com/umaima886" target="_blank" rel="noopener">fiverr.com/umaima886</a></li>
+          </ul>
         </div>
       </div>
     </section>
   </div>
 
-  <footer class="site-foot">© 2026 Umaima Shah · Chat with your PDF</footer>
+  <footer class="site-foot">
+    © 2026 Syeda Umaima · Chat with your PDF ·
+    <a href="mailto:imumaimabukhari@gmail.com">imumaimabukhari@gmail.com</a> ·
+    <a href="https://www.fiverr.com/umaima886" target="_blank" rel="noopener">Fiverr</a>
+  </footer>
 </body>
 </html>

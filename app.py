@@ -15,6 +15,7 @@ Open:  http://127.0.0.1:8002
 
 Pages:
   /       Home: what the project is, how it works, the developer
+  /guide  How to use it, step by step (for beginners)
   /chat   The tool: upload a PDF and chat with it (/chat?sample=1 loads the sample)
 
 API:
@@ -159,6 +160,11 @@ class AskRequest(BaseModel):
 @app.get("/")
 def home():
     return FileResponse(os.path.join(STATIC_DIR, "home.html"))
+
+
+@app.get("/guide")
+def guide_page():
+    return FileResponse(os.path.join(STATIC_DIR, "guide.html"))
 
 
 @app.get("/chat")
