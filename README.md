@@ -70,4 +70,4 @@ Both endpoints are rate-limited per visitor to protect the free AI quota.
 
 I build custom AI chatbots that answer from your own documents, website or product data.
 
-**Umaima Shah** · [Hire me on Fiverr](https://www.fiverr.com/umaima886) · [GitHub](https://github.com/imumaimabukhari-123)
+**Syeda Umaima** · ✉️ [imumaimabukhari@gmail.com](mailto:imumaimabukhari@gmail.com) · [Hire me on Fiverr](https://www.fiverr.com/umaima886) · [GitHub](https://github.com/imumaimabukhari-123)
