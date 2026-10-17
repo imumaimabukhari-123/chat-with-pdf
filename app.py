@@ -45,8 +45,8 @@ STATIC_DIR = os.path.join(BASE_DIR, "static")
 SYSTEM_PROMPT = """You answer questions about a document the user uploaded.
 
 Rules:
-- Use ONLY the numbered sources below. Never use outside knowledge or guess.
-- After each fact, cite the page it came from like this: [p. 4]
+- Use ONLY the sources below. Never use outside knowledge or guess.
+- After each fact, cite the page number shown above the passage it came from, like this: [p. 4]
 - If the sources don't contain the answer, say exactly:
   "I couldn't find that in this document." and nothing else.
 - Be clear and short. Use bullet points for lists. Use **bold** for key terms.
@@ -117,8 +117,9 @@ def embed(texts: list[str], task: str) -> list[list[float]]:
 
 
 def answer(question: str, sources: list["Source"], history: list["Turn"]) -> str:
-    numbered = "\n\n".join(f"[Source {i}, page {s.page}]\n{s.text}" for i, s in enumerate(sources, 1))
-    messages = [{"role": "system", "content": f"{SYSTEM_PROMPT}\n\nSources:\n\n{numbered}"}]
+    # Label passages by page only: numbering them "Source 1, 2…" made the AI cite those numbers as pages.
+    passages = "\n\n".join(f"--- Page {s.page} ---\n{s.text}" for s in sources)
+    messages = [{"role": "system", "content": f"{SYSTEM_PROMPT}\n\nSources:\n\n{passages}"}]
     messages += [{"role": t.role, "content": t.content} for t in history]
     messages.append({"role": "user", "content": question})
     data = gemini_post(
