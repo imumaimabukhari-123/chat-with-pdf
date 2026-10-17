@@ -2,7 +2,7 @@
 
 Upload a PDF and ask it questions. The AI answers **only from your document** and shows the **page number** for every fact, so you can check each answer.
 
-**Live demo:** _coming soon_ · Try it with the built-in sample handbook, no PDF needed.
+**Live demo:** https://chat-with-pdf-mauve.vercel.app · Try it with the built-in sample handbook, no PDF needed.
 
 ![Chat with your PDF: an answer with page citations](docs/screenshot.png)
 
